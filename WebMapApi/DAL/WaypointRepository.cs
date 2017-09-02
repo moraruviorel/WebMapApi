@@ -20,13 +20,34 @@ namespace WebMapApi.DAL
 		
 		public List<Waypoint> GetWaypoints(int orderId)
 		{
-			var order = GetCarId(orderId);
+			var order = GetOrder(orderId);
 			if (order == null) throw new Exception($"this orderId = {orderId} don't exist");
 			try
 			{
-				var sqlString = "Select UpdateTime, Latitude, Longitude from MobileDeviceData where CarId = " + order?.CarId;
+				var hour = DateTime.Now.Hour;
+				var minute = DateTime.Now.Minute;
+				var sec = DateTime.Now.Second;
+				var sqlString = "select Latitude, Longitude from MobileDeviceTrace " + 
+					"where MobileDeviceId = 161 " +
+					"and TraceTime between '2016-12-14 10:45:55' and '2016-12-14 " + hour + ":" + minute + ":" + sec + "' " +
+					"order by TraceTime";
+				//"Select Latitude, Longitude from MobileDeviceData where CarId = " + order?.CarId;
+					//UpdateTime, 
 				var waypoints = (List<Waypoint>)_db.Query<Waypoint>(sqlString);
-				return waypoints;
+				//delete the same points
+				Waypoint waypoint = null;
+				List<Waypoint> waypointList = new List<Waypoint>();
+				foreach (var item in waypoints)
+				{
+					if (waypoint != null)
+					{
+						if (waypoint.Latitude != item.Latitude && waypoint.Longitude != item.Longitude)
+							waypointList.Add(item);
+					}
+					else waypointList.Add(item);
+					waypoint = item;
+				}
+				return waypointList;
 			}
 			catch (Exception ex)
 			{
@@ -34,7 +55,7 @@ namespace WebMapApi.DAL
 			}			
 		}
 
-		public Order GetCarId(int orderId)
+		public Order GetOrder(int orderId)
 		{
 			var order = new Order();
 			try

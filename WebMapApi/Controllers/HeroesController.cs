@@ -18,9 +18,9 @@ namespace WebMapApi.Controllers
 		}
 
 		// GET api/values/5
-		public string Get(int id)
+		public Hero Get(int id)
 		{
-			return "value";
+			return new Hero { Id = 11, Name = "Mr. Nice" };
 		}
 
 		// POST api/values

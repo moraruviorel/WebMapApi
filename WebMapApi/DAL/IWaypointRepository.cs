@@ -11,9 +11,6 @@ namespace WebMapApi.DAL
 	{
 		List<Waypoint> GetWaypoints(int orderId);
 
-		Order GetCarId(int orderId);
-
-
-
+		Order GetOrder(int orderId);
 	}
 }

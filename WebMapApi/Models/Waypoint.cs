@@ -7,7 +7,7 @@ namespace WebMapApi.Models
 {
 	public class Waypoint
 	{
-		public DateTime UpdateTime { get; set; }
+		// public DateTime UpdateTime { get; set; }
 		public double Latitude { get; set; }
 		public double Longitude { get; set; }
 	}
