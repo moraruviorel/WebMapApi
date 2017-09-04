@@ -7,9 +7,9 @@ using WebMapApi.Models;
 
 namespace WebMapApi.DAL
 {
-	internal interface IWaypointRepository
+	internal interface IMobileDeviceTraceRepository
 	{
-		List<Waypoint> GetWaypoints(int orderId);
+		List<MobileDeviceTrace> MobileDeviceTraceList(int orderId);
 
 		Order GetOrder(int orderId);
 	}

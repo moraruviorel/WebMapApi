@@ -13,8 +13,8 @@ namespace WebMapApi.Controllers
 		// GET api/values
 		public IEnumerable<Hero> Get()
 		{
-			return new Hero[] { new Hero { Id= 11, Name= "Mr. Nice" }, new Hero { Id = 12, Name = "Narco" }};
-  
+			return new Hero[] { new Hero { Id = 11, Name = "Mr. Nice" }, new Hero { Id = 12, Name = "Narco" } };
+
 		}
 
 		// GET api/values/5
